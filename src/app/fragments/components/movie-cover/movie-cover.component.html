@@ -1,0 +1,9 @@
+<ng-container>
+  @if(isSkeleton) {
+    <div class="cover">
+      <ion-skeleton-text />
+    </div>
+  } @else if (movie) {
+    <img class="cover" [src]="retrieveMovieImageUrl()" [alt]="movie.title" />
+  }
+</ng-container>

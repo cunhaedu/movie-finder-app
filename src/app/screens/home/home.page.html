@@ -1,0 +1,34 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title color="primary">Movie Finder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @defer (when !isLoading) {
+    <div class="container">
+      <h2 class="title" color="primary">Popular</h2>
+
+      <app-movies-list
+        [movies]="movies"
+        [genreList]="genreList"
+        [isLoading]="isLoading"
+        (loadMore)="loadMore($event)"
+      />
+    </div>
+  } @placeholder {
+    <div class="container">
+      <h2 class="title" color="primary">Popular</h2>
+      <app-movies-list-skeleton />
+    </div>
+  } @error {
+    <ion-alert
+      header="Error"
+      isOpen="true"
+      [message]="errorMessage"
+      [buttons]="['OK']"
+    />
+  }
+</ion-content>
+
+<app-tab-menu />

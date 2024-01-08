@@ -1,0 +1,34 @@
+<ion-list>
+  @for(movie of movies; track movie.id) {
+    <ion-item
+      lines="none"
+      class="ion-no-padding-bottom"
+      button
+      [routerLink]="['/details', movie.id]"
+    >
+      <ion-avatar slot="start">
+        <img [src]="retrieveMovieImageUrl(movie)" [alt]="movie.title" />
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.release_date | date: 'y' }}</p>
+      </ion-label>
+
+      <ion-badge slot="end">{{ movie.vote_average }}</ion-badge>
+    </ion-item>
+  } @empty {
+    @if(!isLoading) {
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">No movies found</ion-label>
+      </ion-item>
+    }
+  }
+</ion-list>
+
+<ion-infinite-scroll (ionInfinite)="loadMore.emit($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more movies"
+  />
+</ion-infinite-scroll>

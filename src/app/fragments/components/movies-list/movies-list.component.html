@@ -1,0 +1,44 @@
+<div class="container">
+  <h2 class="title" color="primary">Popular</h2>
+
+  <ion-list>
+    @for(movie of movies; track movie.id) {
+      <div
+        lines="none"
+        class="ion-no-padding-bottom movie-row"
+        button
+        [routerLink]="['/details', movie.id]"
+      >
+        <app-movie-cover size="md" [movie]="movie" />
+
+        <div class="ion-text-wrap movie-info">
+          <h3>{{ movie.title }}</h3>
+
+          <div class="classification-container">
+            <ion-icon name="star" color="warning"></ion-icon>
+            <span>{{ movie.vote_average }}/10 IMDB</span>
+          </div>
+
+          <div>
+            <app-genre-badge-list [genres]="retrieveMovieGenresList(movie)" />
+          </div>
+        </div>
+      </div>
+    } @empty {
+      @if(!isLoading) {
+        <ion-item lines="none">
+          <ion-label class="ion-text-center">No movies found</ion-label>
+        </ion-item>
+      }
+    }
+  </ion-list>
+
+  @if(hasPagination) {
+    <ion-infinite-scroll (ionInfinite)="loadMore.emit($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more movies"
+      />
+    </ion-infinite-scroll>
+  }
+</div>

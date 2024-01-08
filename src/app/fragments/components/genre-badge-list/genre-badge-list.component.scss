@@ -1,0 +1,13 @@
+.list-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  span {
+    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    background-color: #DBE3FF;
+    color: #88A4E8;
+  }
+}

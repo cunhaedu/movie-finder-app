@@ -1,0 +1,17 @@
+<div class="container">
+  <h2 class="title" color="primary">Popular</h2>
+
+  <ion-list>
+    @for(i of dummyArray; track i) {
+      <div class="movie-row">
+        <app-movie-cover [isSkeleton]="true" size="md" />
+
+        <div class="movie-info">
+          @for (item of [1,2,3]; track $index) {
+            <ion-skeleton-text animated style="width: 70%;" />
+          }
+        </div>
+      </div>
+    }
+  </ion-list>
+</div>

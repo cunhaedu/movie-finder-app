@@ -1,0 +1,32 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title color="primary">Search a movie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @defer (when !isLoading) {
+    <div class="container">
+      <app-movie-filters (search)="applyFilters($event)" />
+      <app-movies-list
+        [movies]="movies"
+        [genreList]="genreList"
+        [isLoading]="isLoading"
+        (loadMore)="loadMore($event)"
+      />
+    </div>
+  } @placeholder {
+    <div class="container">
+      <app-movies-list-skeleton />
+    </div>
+  } @error {
+    <ion-alert
+      header="Error"
+      isOpen="true"
+      [message]="errorMessage"
+      [buttons]="['OK']"
+    />
+  }
+</ion-content>
+
+<app-tab-menu />

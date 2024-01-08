@@ -1,0 +1,22 @@
+.container {
+  padding-left: 20px;
+}
+
+.title {
+  font-size: 1.25rem;
+  color: var(--ion-color-primary);
+}
+
+.movie-row {
+  display: flex;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.movie-info {
+  margin-top: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
